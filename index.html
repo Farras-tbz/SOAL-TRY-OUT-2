@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Try Out 2 - OSN Mathematics</title>
+    <title>Try Out 2 - OSN Teori Bilangan</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
     <script>
         window.MathJax = {
             tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']],
-                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+                inlineMath: [["$", "$"], ["\\(", "\\)"]],
+                displayMath: [["$$", "$$"], ["\\[", "\\]"]]
             }
         };
     </script>
@@ -23,7 +23,7 @@
             -ms-user-select: none;
             user-select: none;
         }
-        
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(180deg, #87CEEB 0%, #98D8E8 30%, #B0E0E6 60%, #E0F6FF 100%);
@@ -550,10 +550,10 @@
 
         .hidden { display: none !important; }
     </style>
+<base target="_blank">
 </head>
 <body>
 
-    <!-- ACCESS DENIED SCREEN -->
     <div class="access-denied" id="accessDenied">
         <i class="fas fa-lock"></i>
         <h1>Akses Ditolak</h1>
@@ -563,12 +563,10 @@
         </a>
     </div>
 
-    <!-- CHEAT WARNING -->
     <div class="cheat-warning" id="cheatWarning">
         ⚠️ PERINGATAN: Aktivitas mencurigakan terdeteksi! Segera kembali ke tab ujian!
     </div>
 
-    <!-- BLUR OVERLAY -->
     <div class="blur-overlay" id="blurOverlay" onclick="hideBlurOverlay()">
         <div class="blur-message">
             <i class="fas fa-eye-slash" style="font-size: 4em; margin-bottom: 20px; display: block;"></i>
@@ -577,7 +575,6 @@
         </div>
     </div>
 
-    <!-- SECURITY BLOCK -->
     <div class="security-block" id="securityBlock">
         <div class="security-icon">
             <i class="fas fa-shield-alt"></i>
@@ -590,24 +587,21 @@
         <p style="color: #666; margin-top: 20px;">Jawaban akan dikumpulkan otomatis...</p>
     </div>
 
-    <!-- NOTIFICATION -->
     <div class="notification" id="notification">
         <i class="fas fa-info-circle"></i> Selesaikan semua soal Pilihan Ganda terlebih dahulu!
     </div>
 
-    <!-- CLOUDS -->
     <div class="clouds-container">
         <div class="cloud cloud1"></div>
         <div class="cloud cloud2"></div>
         <div class="cloud cloud3"></div>
     </div>
 
-    <!-- EXAM CONTENT -->
     <div class="exam-content" id="examContent">
         <div class="exam-header">
             <div class="exam-title">
                 <i class="fas fa-pencil-alt"></i>
-                Try Out 2 - OSN Mathematics
+                Try Out 2 - OSN Teori Bilangan
             </div>
             <div style="display: flex; gap: 15px; align-items: center;">
                 <div style="background: rgba(102, 126, 234, 0.2); padding: 10px 20px; border-radius: 10px; color: #2C3E50; font-weight: 600;">
@@ -622,7 +616,6 @@
 
         <div class="exam-main">
             <div class="question-card" id="questionCard">
-                <!-- Content loaded by JS -->
             </div>
 
             <div class="sidebar">
@@ -681,13 +674,12 @@
         </div>
     </div>
 
-    <!-- COMPLETION MODAL -->
     <div class="completion-modal" id="completionModal">
         <div class="completion-box">
             <i class="fas fa-check-circle" style="font-size: 5em; color: #4ECDC4; margin-bottom: 20px;"></i>
             <h2>Terima Kasih!</h2>
             <p>Jawaban Anda telah berhasil dikumpulkan.</p>
-            
+
             <div class="stats-grid">
                 <div class="stat-item">
                     <div class="stat-number" id="finalPG">0</div>
@@ -711,121 +703,121 @@
 
     <script>
         // ============================================
-        // SOAL TRY OUT 2 - LENGKAP (Berbeda dari TO1)
+        // SOAL TRY OUT 2 - TEORI BILANGAN (20 SOAL)
         // ============================================
         const soalPG = [
             {
                 nomor: 1,
-                pertanyaan: "Nilai dari $\\lim_{x \\to 0} \\frac{\\tan 3x - \\sin 3x}{x^3}$ adalah...",
-                pilihan: ["$\\frac{9}{2}$", "$\\frac{27}{2}$", "$9$", "$27$", "$\\frac{3}{2}$"],
+                pertanyaan: "Faktor prima terbesar dari $2026^2 - 1$ adalah \\ldots",
+                pilihan: ["$2025$", "$2027$", "$2026$", "$1013$", "$4052$"],
                 jawaban: "B"
             },
             {
                 nomor: 2,
-                pertanyaan: "Diketahui $x^2 + y^2 = 25$ dan $\\frac{dy}{dx} = -\\frac{x}{y}$. Jika $y > 0$, maka nilai $\\frac{d^2y}{dx^2}$ saat $x = 3$ adalah...",
-                pilihan: ["$-\\frac{25}{64}$", "$-\\frac{25}{16}$", "$-\\frac{5}{8}$", "$-\\frac{5}{4}$", "$-\\frac{25}{32}$"],
-                jawaban: "A"
+                pertanyaan: "Diberikan dua bilangan asli tiga angka yang selisihnya $24$. Bilangan yang kecil merupakan kelipatan $8$, sedangkan yang besar merupakan kelipatan $13$. Jika jumlah semua faktor prima berbeda dari kedua bilangan tersebut adalah $17$, maka jumlah kedua bilangan tersebut adalah \\ldots",
+                pilihan: ["$384$", "$480$", "$576$", "$672$", "$768$"],
+                jawaban: "C"
             },
             {
                 nomor: 3,
-                pertanyaan: "Dalam sebuah kotak terdapat 5 bola merah dan 3 bola putih. Jika diambil 2 bola secara berurutan tanpa pengembalian, peluang terambil bola merah pada pengambilan kedua jika bola pertama yang terambil adalah putih adalah...",
-                pilihan: ["$\\frac{5}{7}$", "$\\frac{5}{8}$", "$\\frac{4}{7}$", "$\\frac{3}{7}$", "$\\frac{1}{2}$"],
-                jawaban: "A"
+                pertanyaan: "Diketahui $\\text{FPB}(a, 2025) = 135$. Jika $5000 < a < 10000$, maka banyaknya nilai $a$ yang mungkin adalah \\ldots",
+                pilihan: ["$15$", "$18$", "$20$", "$22$", "$25$"],
+                jawaban: "C"
             },
             {
                 nomor: 4,
-                pertanyaan: "Jika $^2\\log 3 = a$ dan $^3\\log 5 = b$, maka nilai dari $^{15}\\log 20$ adalah...",
-                pilihan: ["$\\frac{2a+1}{a+ab}$", "$\\frac{2a+1}{a+b}$", "$\\frac{a+2}{1+ab}$", "$\\frac{2a+1}{1+ab}$", "$\\frac{a+1}{a+ab}$"],
-                jawaban: "D"
+                pertanyaan: "Nilai dari $\\displaystyle\\sum_{k=1}^{2024} \\text{FPB}(k, 12)$ adalah \\ldots",
+                pilihan: ["$6740$", "$6742$", "$6750$", "$6720$", "$6760$"],
+                jawaban: "B"
             },
             {
                 nomor: 5,
-                pertanyaan: "Diketahui matriks $A = \\begin{pmatrix} 2 & 1 \\\\ 3 & 4 \\end{pmatrix}$ dan $B = \\begin{pmatrix} 1 & 2 \\\\ 0 & 3 \\end{pmatrix}$. Determinan dari $(AB)^{-1}$ adalah...",
-                pilihan: ["$\\frac{1}{30}$", "$\\frac{1}{15}$", "$\\frac{1}{10}$", "$\\frac{1}{5}$", "$30$"],
+                pertanyaan: "Jumlah semua bilangan asli $n$ sehingga $n^2 + 3n + 2024$ merupakan kuadrat sempurna adalah \\ldots",
+                pilihan: ["$2020$", "$2024$", "$2019$", "$2026$", "$2016$"],
                 jawaban: "A"
             },
             {
                 nomor: 6,
-                pertanyaan: "Nilai maksimum dari $f(x,y) = 5x + 3y$ dengan syarat $x + y \\leq 6$, $x + 2y \\leq 8$, $x \\geq 0$, $y \\geq 0$ adalah...",
-                pilihan: ["$24$", "$26$", "$28$", "$30$", "$32$"],
-                jawaban: "B"
+                pertanyaan: "Berapa nilai $n$ terkecil sehingga bilangan yang terdiri dari $n$ buah digit $6$ diikuti dengan $n$ buah digit $4$ habis dibagi $143$?",
+                pilihan: ["$4$", "$5$", "$6$", "$7$", "$8$"],
+                jawaban: "C"
             },
             {
                 nomor: 7,
-                pertanyaan: "Proyeksi vektor $\\vec{a} = \\begin{pmatrix} 2 \\\\ 3 \\end{pmatrix}$ pada vektor $\\vec{b} = \\begin{pmatrix} 4 \\\\ -1 \\end{pmatrix}$ adalah...",
-                pilihan: ["$\\begin{pmatrix} \\frac{8}{17} \\\\ -\\frac{2}{17} \\end{pmatrix}$", "$\\begin{pmatrix} \\frac{4}{17} \\\\ -\\frac{1}{17} \\end{pmatrix}$", "$\\begin{pmatrix} 4 \\\\ -1 \\end{pmatrix}$", "$\\begin{pmatrix} \\frac{2}{5} \\\\ -\\frac{1}{10} \\end{pmatrix}$", "$\\begin{pmatrix} \\frac{8}{5} \\\\ -\\frac{2}{5} \\end{pmatrix}$"],
-                jawaban: "E"
+                pertanyaan: "Banyaknya faktor positif dari $2025^3$ yang merupakan kelipatan $225$ tetapi \\textbf{bukan} kelipatan $2025$ adalah \\ldots",
+                pilihan: ["$5$", "$8$", "$10$", "$12$", "$15$"],
+                jawaban: "C"
             },
             {
                 nomor: 8,
-                pertanyaan: "Dalam segitiga ABC dengan panjang sisi $a = 7$, $b = 8$, dan $c = 9$, panjang jari-jari lingkaran dalam adalah...",
-                pilihan: ["$\\sqrt{5}$", "$2\\sqrt{5}$", "$\\frac{5}{2}$", "$\\sqrt{6}$", "$2\\sqrt{6}$"],
-                jawaban: "A"
+                pertanyaan: "Banyaknya faktor positif dari $2^{10} \\cdot 3^8 \\cdot 5^4 \\cdot 7^3$ yang habis dibagi $30$ tetapi \\textbf{tidak} habis dibagi $42$ adalah \\ldots",
+                pilihan: ["$240$", "$280$", "$320$", "$360$", "$400$"],
+                jawaban: "C"
             },
             {
                 nomor: 9,
-                pertanyaan: "Jumlah deret geometri tak hingga $\\frac{1}{2} + \\frac{1}{6} + \\frac{1}{18} + \\dots$ adalah...",
-                pilihan: ["$\\frac{2}{3}$", "$\\frac{3}{4}$", "$1$", "$\\frac{1}{2}$", "$\\frac{3}{2}$"],
-                jawaban: "B"
+                pertanyaan: "Bilangan bulat positif terkecil $a$ sehingga $a + 3a + 5a + \\cdots + (2\\cdot2024-1)a$ merupakan pangkat tiga suatu bilangan asli adalah \\ldots",
+                pilihan: ["$253$", "$506$", "$1012$", "$2024$", "$759$"],
+                jawaban: "A"
             },
             {
                 nomor: 10,
-                pertanyaan: "Jika $f(x) = 2^{x-1}$, maka nilai $x$ yang memenuhi $f(x-1) = 4f(2-x)$ adalah...",
-                pilihan: ["$1$", "$2$", "$3$", "$4$", "$5$"],
-                jawaban: "B"
+                pertanyaan: "Bilangan terbesar $x$ kurang dari $2024$ sehingga terdapat tepat tiga bilangan asli $n$ yang memenuhi $\\dfrac{n^2+x}{n+1}$ merupakan bilangan asli adalah \\ldots",
+                pilihan: ["$2020$", "$2021$", "$2022$", "$2023$", "$2019$"],
+                jawaban: "A"
             }
         ];
 
         const soalIsian = [
             {
                 nomor: 11,
-                pertanyaan: "Hitung nilai dari $\\int_{0}^{\\frac{\\pi}{2}} (\\sin x + \\cos x)^2 dx$",
-                jawaban: "2"
+                pertanyaan: "Palindrom $7$ digit terbesar yang habis dibagi $303$ adalah \\ldots",
+                jawaban: "9990999"
             },
             {
                 nomor: 12,
-                pertanyaan: "Jika $\\frac{dy}{dx} = 2x$ dan $y(0) = 3$, tentukan nilai $y(2)$",
-                jawaban: "7"
+                pertanyaan: "Banyaknya pasangan bilangan bulat $(m, n)$ dengan $n$ prima yang memenuhi $m^2n + mn^2 = 42n + 18m$ adalah \\ldots",
+                jawaban: "0"
             },
             {
                 nomor: 13,
-                pertanyaan: "Dari 8 orang siswa, akan dibentuk tim yang terdiri dari 4 orang. Jika 2 orang tertentu harus selalu bersama-sama dalam tim, berapa banyak cara membentuk tim tersebut?",
-                jawaban: "15"
+                pertanyaan: "Jumlah semua kemungkinan dua digit terakhir dari bilangan asli $a$ sehingga dua digit terakhir dari $a^{2024}$ adalah $76$ adalah \\ldots",
+                jawaban: "184"
             },
             {
                 nomor: 14,
-                pertanyaan: "Jika $\\sin \\alpha = \\frac{3}{5}$ dan $\\cos \\beta = \\frac{5}{13}$ dengan $\\alpha$ dan $\\beta$ sudut lancip, hitung nilai $\\sin (\\alpha + \\beta)$",
-                jawaban: "63/65"
+                pertanyaan: "Diberikan barisan $a_n = n^2 + 21n + b$. Bilangan ganjil terbesar $b$ sehingga $\\gcd(a_n, a_{n+1}) = \\gcd(a_{n+1}, a_{n+2})$ untuk setiap bilangan asli $n$ adalah \\ldots",
+                jawaban: "111"
             },
             {
                 nomor: 15,
-                pertanyaan: "Tentukan banyaknya solusi real dari persamaan $|x-1| + |x+2| = 3$",
-                jawaban: "tak hingga"
+                pertanyaan: "Diberikan bilangan asli $m, n$ dengan $\\text{FPB}(m, n) = 12$ dan $\\text{FPB}(3m, 5n) = 60$. Nilai dari $\\text{FPB}(21m, 14n)$ adalah \\ldots",
+                jawaban: "84"
             },
             {
                 nomor: 16,
-                pertanyaan: "Diketahui $f(x) = 2x + 1$ dan $g(x) = x^2 - 3$. Tentukan nilai $(g \\circ f)(2)$",
+                pertanyaan: "Sisa pembagian $7^{2024} + 13^{2025}$ oleh $144$ adalah \\ldots",
                 jawaban: "14"
             },
             {
                 nomor: 17,
-                pertanyaan: "Jumlah 10 suku pertama deret aritmetika adalah 530. Jika suku pertama 8 dan beda positif, tentukan beda deret tersebut",
-                jawaban: "10"
+                pertanyaan: "Jika bilangan asli $x$ memenuhi $x^2 + 210x = p^4$ untuk suatu bilangan prima $p$, maka nilai $x$ adalah \\ldots",
+                jawaban: "0"
             },
             {
                 nomor: 18,
-                pertanyaan: "Selesaikan persamaan $4^{x} - 2^{x+2} - 5 = 0$. Tulis nilai $x$",
-                jawaban: "2"
+                pertanyaan: "Semua bilangan bulat $n$ sehingga $n^4 + 20n^3 + 107n^2 + 140n$ merupakan bilangan kuadrat tak nol adalah \\ldots (tuliskan jumlah semua nilai $n$)",
+                jawaban: "-7"
             },
             {
                 nomor: 19,
-                pertanyaan: "Titik $A(1,2)$ dicerminkan terhadap garis $y = x$, kemudian hasilnya ditranslasi dengan vektor $\\begin{pmatrix} 3 \\\\ -1 \\end{pmatrix}$. Tentukan koordinat akhir (tulis dalam format x,y tanpa spasi)",
-                jawaban: "5,0"
+                pertanyaan: "Sisa pembagian $2222^{2024}$ oleh $22221$ adalah \\ldots",
+                jawaban: "1"
             },
             {
                 nomor: 20,
-                pertanyaan: "Diketahui data: 5, 7, 8, 6, 9, 7, 8, 7, 6, 8. Tentukan simpangan rata-rata (mean deviation) dari data tersebut",
-                jawaban: "1"
+                pertanyaan: "Misalkan $n$ adalah bilangan asli terkecil yang semua digitnya sama dan sedikitnya terdiri dari $2024$ digit. Jika $n$ habis dibagi $14$, maka hasil penjumlahan semua digit dari $n$ adalah \\ldots",
+                jawaban: "4056"
             }
         ];
 
@@ -846,9 +838,6 @@
             };
         }));
 
-        // ============================================
-        // STATE & CONFIG
-        // ============================================
         let currentQuestion = 0;
         let answers = new Array(20).fill(null);
         let doubts = new Array(20).fill(false);
@@ -856,7 +845,7 @@
         let timerInterval;
         let studentName = '';
         let isExamActive = false;
-        
+
         const SECURITY_CONFIG = {
             maxViolations: 3,
             warningDuration: 3000,
@@ -870,43 +859,34 @@
             blurCount: 0
         };
 
-        // ============================================
-        // ACCESS VERIFICATION (Khusus TO2)
-        // ============================================
         function verifyAccess() {
             const urlParams = new URLSearchParams(window.location.search);
             const token = urlParams.get('token');
-            
+
             if (!token) {
                 showAccessDenied();
                 return false;
             }
-            
+
             try {
                 const decoded = JSON.parse(atob(token));
                 const now = Date.now();
                 const tokenAge = now - decoded.t;
-                
-                // Verifikasi khusus TO2
-                if (decoded.to !== 2) {
-                    showAccessDenied();
-                    return false;
-                }
-                
+
                 if (tokenAge > 5 * 60 * 1000) {
                     showAccessDenied();
                     return false;
                 }
-                
+
                 studentName = decoded.n;
                 document.getElementById('studentNameDisplay').textContent = studentName;
-                
+
                 if (window.history.replaceState) {
                     window.history.replaceState({}, document.title, window.location.pathname);
                 }
-                
+
                 return true;
-                
+
             } catch (e) {
                 showAccessDenied();
                 return false;
@@ -918,66 +898,63 @@
             document.getElementById('examContent').classList.add('hidden');
         }
 
-        // ============================================
-        // SECURITY SYSTEM
-        // ============================================
         function initSecurity() {
             isExamActive = true;
-            
+
             document.addEventListener('contextmenu', function(e) {
                 e.preventDefault();
                 handleViolation('Right-click tidak diizinkan!');
                 return false;
             }, true);
-            
+
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'PrintScreen') {
                     e.preventDefault();
                     handleViolation('Screenshot tidak diizinkan!');
                     return false;
                 }
-                
+
                 if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 's') {
                     e.preventDefault();
                     handleViolation('Screenshot tools diblokir!');
                     return false;
                 }
-                
+
                 if (e.metaKey && e.shiftKey && ['3','4','5'].indexOf(e.key) !== -1) {
                     e.preventDefault();
                     handleViolation('Screenshot diblokir!');
                     return false;
                 }
-                
+
                 if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && ['I','J','C'].indexOf(e.key) !== -1)) {
                     e.preventDefault();
                     handleViolation('Developer Tools diblokir!');
                     return false;
                 }
-                
+
                 if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'p') {
                     e.preventDefault();
                     handleViolation('Print tidak diizinkan!');
                     return false;
                 }
-                
+
                 if ((e.ctrlKey || e.metaKey) && (e.key === 'c' || e.key === 'v')) {
                     e.preventDefault();
                     return false;
                 }
             }, true);
-            
+
             document.addEventListener('copy', function(e) { e.preventDefault(); });
             document.addEventListener('paste', function(e) { e.preventDefault(); });
             document.addEventListener('cut', function(e) { e.preventDefault(); });
-            
+
             document.addEventListener('visibilitychange', function() {
                 if (!isExamActive || securityState.isLocked) return;
-                
+
                 if (document.hidden) {
                     securityState.tabSwitches++;
                     showBlurOverlay();
-                    
+
                     if (securityState.tabSwitches >= 2) {
                         handleViolation('Terlalu sering pindah tab!');
                     }
@@ -985,22 +962,22 @@
                     hideBlurOverlay();
                 }
             });
-            
+
             window.addEventListener('blur', function() {
                 if (!isExamActive || securityState.isLocked) return;
                 securityState.blurCount++;
-                
+
                 if (securityState.blurCount >= 3) {
                     handleViolation('Terlalu sering kehilangan fokus!');
                 } else {
                     showCheatWarning();
                 }
             });
-            
+
             window.addEventListener('focus', function() {
                 hideCheatWarning();
             });
-            
+
             requestFullscreen();
             document.addEventListener('fullscreenchange', function() {
                 if (!document.fullscreenElement && isExamActive && !securityState.isLocked) {
@@ -1008,10 +985,10 @@
                     setTimeout(requestFullscreen, 100);
                 }
             });
-            
+
             document.addEventListener('dragstart', function(e) { e.preventDefault(); });
             document.addEventListener('drop', function(e) { e.preventDefault(); });
-            
+
             setInterval(function() {
                 const threshold = 160;
                 if (window.outerWidth - window.innerWidth > threshold || 
@@ -1019,7 +996,7 @@
                     handleViolation('Developer Tools terdeteksi!');
                 }
             }, 1000);
-            
+
             setInterval(function() {
                 navigator.clipboard.writeText('').catch(function() {});
             }, 500);
@@ -1038,7 +1015,7 @@
 
         function handleViolation(reason) {
             securityState.violations++;
-            
+
             if (securityState.violations >= SECURITY_CONFIG.maxViolations) {
                 lockExam(reason);
             } else {
@@ -1070,32 +1047,29 @@
         function lockExam(reason) {
             securityState.isLocked = true;
             isExamActive = false;
-            
+
             clearInterval(timerInterval);
-            
+
             const block = document.getElementById('securityBlock');
             document.getElementById('securityMessage').textContent = reason;
             block.classList.add('active');
-            
+
             let count = 5;
             const countdownEl = document.getElementById('securityCountdown');
-            
+
             const interval = setInterval(function() {
                 count--;
                 countdownEl.textContent = count;
-                
+
                 if (count <= 0) {
                     clearInterval(interval);
                     forceSubmit();
                 }
             }, 1000);
-            
+
             saveResult(true, reason);
         }
 
-        // ============================================
-        // EXAM FUNCTIONS
-        // ============================================
         function initExam() {
             renderNavigation();
             loadQuestion(0);
@@ -1105,7 +1079,7 @@
         function renderNavigation() {
             const pgNav = document.getElementById('pgNav');
             const isianNav = document.getElementById('isianNav');
-            
+
             pgNav.innerHTML = '';
             isianNav.innerHTML = '';
 
@@ -1124,7 +1098,7 @@
                 const item = document.createElement('div');
                 item.className = 'nav-item isian';
                 item.textContent = i + 1;
-                
+
                 if (!pgCompleted) {
                     item.classList.add('locked');
                 } else {
@@ -1148,7 +1122,7 @@
             currentQuestion = index;
             const q = questions[index];
             const card = document.getElementById('questionCard');
-            
+
             let html = '<div class="question-number">Soal ' + q.number + '</div>';
             html += '<div class="question-text">' + q.question + '</div>';
 
@@ -1312,7 +1286,7 @@
 
         function forceSubmit() {
             isExamActive = false;
-            
+
             let pgCorrect = 0;
             let isianCorrect = 0;
 
@@ -1323,8 +1297,8 @@
             }
 
             for (let i = 10; i < 20; i++) {
-                const userAns = (answers[i] || '').toString().trim().toLowerCase();
-                const correctAns = questions[i].answer.toString().trim().toLowerCase();
+                const userAns = (answers[i] || '').toString().trim().toLowerCase().replace(/\s/g, '');
+                const correctAns = questions[i].answer.toString().trim().toLowerCase().replace(/\s/g, '');
                 if (userAns === correctAns) {
                     isianCorrect++;
                 }
@@ -1337,7 +1311,7 @@
             document.getElementById('finalScore').textContent = totalScore + '/50';
 
             document.getElementById('completionModal').classList.add('show');
-            
+
             saveResult(false, 'Submitted normally', totalScore, pgCorrect, isianCorrect);
         }
 
@@ -1351,13 +1325,12 @@
                 isCheat: isCheat,
                 reason: reason,
                 answers: answers,
-                tryOut: 2,
                 timestamp: Date.now()
             };
 
-            const existing = JSON.parse(localStorage.getItem('tryout_2_results') || '[]');
+            const existing = JSON.parse(localStorage.getItem('tryout_results') || '[]');
             existing.push(result);
-            localStorage.setItem('tryout_2_results', JSON.stringify(existing));
+            localStorage.setItem('tryout_results', JSON.stringify(existing));
         }
 
         function calculateScore() {
@@ -1369,8 +1342,8 @@
             }
 
             for (let i = 10; i < 20; i++) {
-                const userAns = (answers[i] || '').toString().trim().toLowerCase();
-                const correctAns = questions[i].answer.toString().trim().toLowerCase();
+                const userAns = (answers[i] || '').toString().trim().toLowerCase().replace(/\s/g, '');
+                const correctAns = questions[i].answer.toString().trim().toLowerCase().replace(/\s/g, '');
                 if (userAns === correctAns) isianCorrect++;
             }
 
@@ -1381,9 +1354,6 @@
             window.location.href = 'index.html';
         }
 
-        // ============================================
-        // INITIALIZATION
-        // ============================================
         document.addEventListener('DOMContentLoaded', function() {
             if (verifyAccess()) {
                 initExam();
