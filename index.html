@@ -9,20 +9,20 @@
     <script>
         window.MathJax = {
             tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']],
-                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                inlineMath: [["$", "$"], ["\\(", "\\)"]],
+                displayMath: [["$$", "$$"], ["\\[", "\\]"]],
                 processEscapes: true,
                 processEnvironments: true
             },
             options: {
-                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+                skipHtmlTags: ["script", "noscript", "style", "textarea", "pre"]
             }
         };
     </script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; user-select: none; -webkit-user-select: none; }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
             color: #fff;
             overflow-x: hidden;
@@ -170,7 +170,7 @@
         .q-nav-btn:hover { border-color: #3498db; }
         .q-nav-btn.answered { background: #27ae60; border-color: #27ae60; }
         .q-nav-btn.current { background: #3498db; border-color: #3498db; }
-        .q-nav-btn.flagged { border-color: #f39c12; position: relative; }
+        .q-nav-btn.flagged { border-color: #f39c12; }
         .flag-btn {
             background: rgba(243, 156, 18, 0.2);
             border: 1px solid #f39c12;
@@ -259,7 +259,7 @@
     <div class="violation-count" id="violation-count">Pelanggaran: 0/2</div>
 
     <div id="access-denied">
-        <h1 style="color: #e74c3c; font-size: 48px; margin-bottom: 20px;">\u26A0 Akses Ditolak</h1>
+        <h1 style="color: #e74c3c; font-size: 48px; margin-bottom: 20px;">&#9888; Akses Ditolak</h1>
         <p style="color: #bdc3c7; font-size: 18px; max-width: 600px;">
             Anda harus login melalui halaman utama terlebih dahulu.<br>
             Token tidak valid atau sudah expired.
@@ -270,7 +270,7 @@
     </div>
 
     <div id="security-overlay">
-        <h2>\u26A0 Pelanggaran Keamanan Terdeteksi!</h2>
+        <h2>&#9888; Pelanggaran Keamanan Terdeteksi!</h2>
         <p id="security-msg">Anda melakukan pelanggaran. Ujian akan dikunci setelah 2 kali pelanggaran.</p>
         <p id="security-count">Pelanggaran: <span id="v-count">0</span>/2</p>
         <button class="btn" id="security-btn" onclick="dismissSecurity()">Saya Mengerti</button>
@@ -310,139 +310,139 @@
     const MAX_VIOLATIONS = 2;
     const TOKEN_EXPIRY = 5 * 60 * 1000;
 
-    // ==================== DATABASE SOAL TO2 ====================
+    // ==================== DATABASE SOAL TO2 (ASLI - FINAL) ====================
     const questions = [
         // === PILIHAN GANDA (1-10) ===
         {
             id: 1,
-            type: 'pg',
-            question: 'Pada segitiga $ABC$, jika $\\angle A = 60^{\\circ}$, $\\angle B = 75^{\\circ}$, dan $BC = 12$, maka panjang $AB$ adalah ....',
-            options: ['6\\sqrt{2}', '6\\sqrt{3}', '12\\sqrt{2}', '12\\sqrt{3}', '24'],
-            correct: 0
+            type: "pg",
+            question: "Faktor prima terbesar dari $2026^2 - 1$ adalah ...",
+            options: ["$2025$", "$2027$", "$2026$", "$1013$", "$4052$"],
+            correct: 1
         },
         {
             id: 2,
-            type: 'pg',
-            question: 'Banyaknya cara memilih 3 orang dari 8 orang untuk membentuk panitia adalah ....',
-            options: ['24', '48', '56', '96', '112'],
+            type: "pg",
+            question: "Diberikan dua bilangan asli tiga angka yang selisihnya $24$. Bilangan yang kecil merupakan kelipatan $8$, sedangkan yang besar merupakan kelipatan $13$. Jika jumlah semua faktor prima berbeda dari kedua bilangan tersebut adalah $17$, maka jumlah kedua bilangan tersebut adalah ...",
+            options: ["$384$", "$480$", "$576$", "$672$", "$768$"],
             correct: 2
         },
         {
             id: 3,
-            type: 'pg',
-            question: 'Jika $z = 1 + i$ adalah bilangan kompleks, maka nilai $|z^2|$ adalah ....',
-            options: ['1', '\\sqrt{2}', '2', '2\\sqrt{2}', '4'],
+            type: "pg",
+            question: "Diketahui $\text{FPB}(a, 2025) = 135$. Jika $5000 < a < 10000$, maka banyaknya nilai $a$ yang mungkin adalah ...",
+            options: ["$15$", "$18$", "$20$", "$22$", "$25$"],
             correct: 2
         },
         {
             id: 4,
-            type: 'pg',
-            question: 'Nilai dari $\\lim_{x \\to 0} \\frac{\\sin(3x)}{x}$ adalah ....',
-            options: ['0', '1', '2', '3', 'Tak terdefinisi'],
-            correct: 3
-        },
-        {
-            id: 5,
-            type: 'pg',
-            question: 'Turunan pertama dari $f(x) = x^3 \\cdot \\ln(x)$ untuk $x > 0$ adalah ....',
-            options: ['$3x^2 \\ln(x)$', '$x^2(3\\ln(x) + 1)$', '$x^2(3\\ln(x) - 1)$', '$3x^2 + \\frac{1}{x}$', '$x^3 + \\ln(x)$'],
+            type: "pg",
+            question: "Nilai dari $\displaystyle\sum_{k=1}^{2024} \text{FPB}(k, 12)$ adalah ...",
+            options: ["$6740$", "$6742$", "$6750$", "$6720$", "$6760$"],
             correct: 1
         },
         {
+            id: 5,
+            type: "pg",
+            question: "Jumlah semua bilangan asli $n$ sehingga $n^2 + 3n + 2024$ merupakan kuadrat sempurna adalah ...",
+            options: ["$2020$", "$2024$", "$2019$", "$2026$", "$2016$"],
+            correct: 0
+        },
+        {
             id: 6,
-            type: 'pg',
-            question: 'Jika $\\log_2(x) + \\log_2(x-2) = 3$, maka nilai $x$ yang memenuhi adalah ....',
-            options: ['2', '3', '4', '5', '6'],
+            type: "pg",
+            question: "Berapa nilai $n$ terkecil sehingga bilangan yang terdiri dari $n$ buah digit $6$ diikuti dengan $n$ buah digit $4$ habis dibagi $143$?",
+            options: ["$4$", "$5$", "$6$", "$7$", "$8$"],
             correct: 2
         },
         {
             id: 7,
-            type: 'pg',
-            question: 'Banyaknya bilangan bulat $n$ dengan $1 \\leq n \\leq 100$ yang relatif prima dengan $100$ adalah ....',
-            options: ['20', '30', '40', '50', '60'],
+            type: "pg",
+            question: "Banyaknya faktor positif dari $2025^3$ yang merupakan kelipatan $225$ tetapi \textbf{bukan} kelipatan $2025$ adalah ...",
+            options: ["$5$", "$8$", "$10$", "$12$", "$15$"],
             correct: 2
         },
         {
             id: 8,
-            type: 'pg',
-            question: 'Jika $a$, $b$, $c$ membentuk barisan geometri dengan $a + b + c = 26$ dan $abc = 216$, maka nilai $b$ adalah ....',
-            options: ['4', '6', '8', '9', '12'],
-            correct: 1
-        },
-        {
-            id: 9,
-            type: 'pg',
-            question: 'Luas daerah yang dibatasi oleh kurva $y = x^2$ dan $y = 2x$ adalah .... satuan luas.',
-            options: ['\\frac{2}{3}', '\\frac{3}{4}', '\\frac{4}{3}', '\\frac{3}{2}', '2'],
+            type: "pg",
+            question: "Banyaknya faktor positif dari $2^{10} \cdot 3^8 \cdot 5^4 \cdot 7^3$ yang habis dibagi $30$ tetapi \textbf{tidak} habis dibagi $42$ adalah ...",
+            options: ["$240$", "$280$", "$320$", "$360$", "$400$"],
             correct: 2
         },
         {
+            id: 9,
+            type: "pg",
+            question: "Bilangan bulat positif terkecil $a$ sehingga $a + 3a + 5a + \cdots + (2\cdot2024-1)a$ merupakan pangkat tiga suatu bilangan asli adalah ...",
+            options: ["$253$", "$506$", "$1012$", "$2024$", "$759$"],
+            correct: 0
+        },
+        {
             id: 10,
-            type: 'pg',
-            question: 'Dalam suatu ujian, peluang siswa A lulus adalah $0.7$ dan peluang siswa B lulus adalah $0.8$. Jika kejadian saling bebas, peluang keduanya lulus adalah ....',
-            options: ['0.48', '0.56', '0.60', '0.72', '0.90'],
-            correct: 1
+            type: "pg",
+            question: "Bilangan terbesar $x$ kurang dari $2024$ sehingga terdapat tepat tiga bilangan asli $n$ yang memenuhi $\dfrac{n^2+x}{n+1}$ merupakan bilangan asli adalah ...",
+            options: ["$2020$", "$2021$", "$2022$", "$2023$", "$2019$"],
+            correct: 0
         },
         // === ISIAN SINGKAT (11-20) ===
         {
             id: 11,
-            type: 'isian',
-            question: 'Nilai dari $\\sin(15^{\\circ}) \\cdot \\cos(15^{\\circ})$ adalah .... (tulis dalam bentuk pecahan sederhana, misal: 1/4)',
-            answer: '1/4'
+            type: "isian",
+            question: "Palindrom $7$ digit terbesar yang habis dibagi $303$ adalah ...",
+            answer: "9990999"
         },
         {
             id: 12,
-            type: 'isian',
-            question: 'Jika $A = \\begin{pmatrix} 1 & 2 \\ 3 & 4 \\end{pmatrix}$, maka determinan dari $A^2$ adalah ....',
-            answer: '4'
+            type: "isian",
+            question: "Banyaknya pasangan bilangan bulat $(m, n)$ dengan $n$ prima yang memenuhi $m^2n + mn^2 = 42n + 18m$ adalah ...",
+            answer: "0"
         },
         {
             id: 13,
-            type: 'isian',
-            question: 'Banyaknya bilangan genap 3 digit yang angka-angkanya berbeda adalah ....',
-            answer: '328'
+            type: "isian",
+            question: "Jumlah semua kemungkinan dua digit terakhir dari bilangan asli $a$ sehingga dua digit terakhir dari $a^{2024}$ adalah $76$ adalah ...",
+            answer: "184"
         },
         {
             id: 14,
-            type: 'isian',
-            question: 'Nilai dari $\\int_0^{\\pi/2} \\sin^2(x) \\, dx$ adalah .... (tulis dalam bentuk pecahan dengan $\\pi$, misal: pi/4)',
-            answer: 'pi/4'
+            type: "isian",
+            question: "Diberikan barisan $a_n = n^2 + 21n + b$. Bilangan ganjil terbesar $b$ sehingga $\gcd(a_n, a_{n+1}) = \gcd(a_{n+1}, a_{n+2})$ untuk setiap bilangan asli $n$ adalah ...",
+            answer: "111"
         },
         {
             id: 15,
-            type: 'isian',
-            question: 'Jika $x$ dan $y$ adalah bilangan bulat positif yang memenuhi $\\frac{1}{x} + \\frac{1}{y} = \\frac{1}{6}$, banyaknya pasangan $(x,y)$ yang memenuhi adalah ....',
-            answer: '9'
+            type: "isian",
+            question: "Diberikan bilangan asli $m, n$ dengan $\text{FPB}(m, n) = 12$ dan $\text{FPB}(3m, 5n) = 60$. Nilai dari $\text{FPB}(21m, 14n)$ adalah ...",
+            answer: "84"
         },
         {
             id: 16,
-            type: 'isian',
-            question: 'Suku ke-20 dari barisan $1, 3, 6, 10, 15, \\ldots$ (barisan segitiga) adalah ....',
-            answer: '210'
+            type: "isian",
+            question: "Sisa pembagian $7^{2024} + 13^{2025}$ oleh $144$ adalah ...",
+            answer: "14"
         },
         {
             id: 17,
-            type: 'isian',
-            question: 'Jika $f(x) = \\frac{x-1}{x+1}$, maka nilai dari $f(f(f(2)))$ adalah ....',
-            answer: '-1/2'
+            type: "isian",
+            question: "Jika bilangan asli $x$ memenuhi $x^2 + 210x = p^4$ untuk suatu bilangan prima $p$, maka nilai $x$ adalah ...",
+            answer: "0"
         },
         {
             id: 18,
-            type: 'isian',
-            question: 'Banyaknya faktor positif dari $2024$ adalah ....',
-            answer: '16'
+            type: "isian",
+            question: "Semua bilangan bulat $n$ sehingga $n^4 + 20n^3 + 107n^2 + 140n$ merupakan bilangan kuadrat tak nol adalah ... (tuliskan jumlah semua nilai $n$)",
+            answer: "-7"
         },
         {
             id: 19,
-            type: 'isian',
-            question: 'Nilai dari $\\sum_{k=1}^{10} \\frac{1}{k(k+1)}$ adalah .... (tulis dalam bentuk pecahan sederhana, misal: 10/11)',
-            answer: '10/11'
+            type: "isian",
+            question: "Sisa pembagian $2222^{2024}$ oleh $22221$ adalah ...",
+            answer: "1"
         },
         {
             id: 20,
-            type: 'isian',
-            question: 'Jika $a$ dan $b$ adalah akar-akar dari $x^2 - 6x + 1 = 0$, maka nilai dari $a^3 + b^3$ adalah ....',
-            answer: '198'
+            type: "isian",
+            question: "Misalkan $n$ adalah bilangan asli terkecil yang semua digitnya sama dan sedikitnya terdiri dari $2024$ digit. Jika $n$ habis dibagi $14$, maka hasil penjumlahan semua digit dari $n$ adalah ...",
+            answer: "4056"
         }
     ];
 
@@ -454,34 +454,34 @@
     let timeLeft = EXAM_DURATION;
     let timerInterval;
     let examSubmitted = false;
-    let userName = '';
+    let userName = "";
     let tokenValid = false;
 
     // ==================== TOKEN VALIDATION ====================
     function validateToken() {
         const params = new URLSearchParams(window.location.search);
-        const token = params.get('token');
+        const token = params.get("token");
 
-        console.log('=== CBT DEBUG TO2 ===');
-        console.log('Hostname:', window.location.hostname);
-        console.log('Path:', window.location.pathname);
-        console.log('Token from URL:', token ? 'ADA' : 'TIDAK ADA');
+        console.log("=== CBT DEBUG TO2 ===");
+        console.log("Hostname:", window.location.hostname);
+        console.log("Path:", window.location.pathname);
+        console.log("Token from URL:", token ? "ADA" : "TIDAK ADA");
 
         if (token) {
             try {
                 const decoded = JSON.parse(atob(token));
-                console.log('Decoded token:', decoded);
+                console.log("Decoded token:", decoded);
                 if (decoded.n && decoded.t && (Date.now() - decoded.t) < TOKEN_EXPIRY) {
                     userName = decoded.n;
                     tokenValid = true;
                     return true;
                 }
             } catch (e) {
-                console.log('Token decode error:', e);
+                console.log("Token decode error:", e);
             }
         }
 
-        const saved = localStorage.getItem('to2_token');
+        const saved = localStorage.getItem("to2_token");
         if (saved) {
             try {
                 const decoded = JSON.parse(atob(saved));
@@ -499,18 +499,18 @@
     // ==================== INIT ====================
     function init() {
         if (!validateToken()) {
-            document.getElementById('access-denied').classList.add('active');
+            document.getElementById("access-denied").classList.add("active");
             return;
         }
 
-        document.getElementById('main-header').style.display = 'flex';
-        document.getElementById('main-content').style.display = 'block';
-        document.getElementById('user-info').textContent = 'Peserta: ' + userName;
+        document.getElementById("main-header").style.display = "flex";
+        document.getElementById("main-content").style.display = "block";
+        document.getElementById("user-info").textContent = "Peserta: " + userName;
 
-        const wm = document.getElementById('watermark');
+        const wm = document.getElementById("watermark");
         for (let i = 0; i < 15; i++) {
-            const span = document.createElement('span');
-            span.textContent = userName + ' | ' + new Date().toLocaleString('id-ID');
+            const span = document.createElement("span");
+            span.textContent = userName + " | " + new Date().toLocaleString("id-ID");
             wm.appendChild(span);
         }
 
@@ -526,15 +526,15 @@
 
     // ==================== RENDER ====================
     function renderNav() {
-        const nav = document.getElementById('question-nav');
-        nav.innerHTML = '';
+        const nav = document.getElementById("question-nav");
+        nav.innerHTML = "";
         questions.forEach((q, i) => {
-            const btn = document.createElement('button');
-            btn.className = 'q-nav-btn';
+            const btn = document.createElement("button");
+            btn.className = "q-nav-btn";
             btn.textContent = i + 1;
-            if (i === 0) btn.classList.add('current');
-            if (answers[q.id] !== undefined) btn.classList.add('answered');
-            if (flagged.has(q.id)) btn.classList.add('flagged');
+            if (i === 0) btn.classList.add("current");
+            if (answers[q.id] !== undefined) btn.classList.add("answered");
+            if (flagged.has(q.id)) btn.classList.add("flagged");
             btn.onclick = () => loadQuestion(i);
             nav.appendChild(btn);
         });
@@ -543,45 +543,45 @@
     function loadQuestion(idx) {
         currentQ = idx;
         const q = questions[idx];
-        const container = document.getElementById('question-container');
+        const container = document.getElementById("question-container");
 
-        let html = '<div class="question-box">';
-        html += '<div class="question-number">Soal ' + q.id;
-        html += '<span class="type-badge ' + (q.type === 'pg' ? 'type-pg' : 'type-isian') + '">';
-        html += (q.type === 'pg' ? 'Pilihan Ganda' : 'Isian Singkat') + '</span></div>';
-        html += '<div class="question-text">' + q.question + '</div>';
+        let html = "<div class=\"question-box\">";
+        html += "<div class=\"question-number\">Soal " + q.id;
+        html += "<span class=\"type-badge " + (q.type === "pg" ? "type-pg" : "type-isian") + "\">";
+        html += (q.type === "pg" ? "Pilihan Ganda" : "Isian Singkat") + "</span></div>";
+        html += "<div class=\"question-text\">" + q.question + "</div>";
 
-        if (q.type === 'pg') {
-            html += '<div class="options">';
-            const letters = ['A', 'B', 'C', 'D', 'E'];
+        if (q.type === "pg") {
+            html += "<div class=\"options\">";
+            const letters = ["A", "B", "C", "D", "E"];
             q.options.forEach((opt, i) => {
-                const selected = answers[q.id] === i ? 'selected' : '';
-                html += '<div class="option ' + selected + '" onclick="selectOption(' + i + ')">';
-                html += '<div class="option-letter">' + letters[i] + '</div>';
-                html += '<div>' + opt + '</div></div>';
+                const selected = answers[q.id] === i ? "selected" : "";
+                html += "<div class=\"option " + selected + "\" onclick=\"selectOption(" + i + ")\">";
+                html += "<div class=\"option-letter\">" + letters[i] + "</div>";
+                html += "<div>" + opt + "</div></div>";
             });
-            html += '</div>';
+            html += "</div>";
         } else {
-            const val = answers[q.id] || '';
-            html += '<input type="text" class="input-answer" id="input-' + q.id + '" ';
-            html += 'value="' + val + '" placeholder="Ketik jawaban Anda..." ';
-            html += 'oninput="saveInput(' + q.id + ', this.value)">';
+            const val = answers[q.id] || "";
+            html += "<input type=\"text\" class=\"input-answer\" id=\"input-" + q.id + "\" ";
+            html += "value=\"" + val + "\" placeholder=\"Ketik jawaban Anda...\" ";
+            html += "oninput=\"saveInput(" + q.id + ", this.value)\">";
         }
 
-        html += '<button class="flag-btn ' + (flagged.has(q.id) ? 'flagged' : '') + '" ';
-        html += 'onclick="toggleFlag(' + q.id + ')">';
-        html += (flagged.has(q.id) ? '\\u2713 Diberi Tanda' : '\\u2691 Beri Tanda') + '</button>';
-        html += '</div>';
+        html += "<button class=\"flag-btn " + (flagged.has(q.id) ? "flagged" : "") + "\" ";
+        html += "onclick=\"toggleFlag(" + q.id + ")\">";
+        html += (flagged.has(q.id) ? "&#10003; Diberi Tanda" : "&#9873; Beri Tanda") + "</button>";
+        html += "</div>";
 
         container.innerHTML = html;
 
-        document.querySelectorAll('.q-nav-btn').forEach((btn, i) => {
-            btn.classList.toggle('current', i === idx);
+        document.querySelectorAll(".q-nav-btn").forEach((btn, i) => {
+            btn.classList.toggle("current", i === idx);
         });
 
-        document.getElementById('btn-prev').disabled = idx === 0;
-        document.getElementById('btn-next').style.display = idx === questions.length - 1 ? 'none' : 'inline-block';
-        document.getElementById('btn-submit').style.display = idx === questions.length - 1 ? 'inline-block' : 'none';
+        document.getElementById("btn-prev").disabled = idx === 0;
+        document.getElementById("btn-next").style.display = idx === questions.length - 1 ? "none" : "inline-block";
+        document.getElementById("btn-submit").style.display = idx === questions.length - 1 ? "inline-block" : "none";
 
         if (window.MathJax && MathJax.typesetPromise) {
             MathJax.typesetPromise([container]);
@@ -602,12 +602,12 @@
 
     function updateNavAnswered(qid) {
         const idx = questions.findIndex(q => q.id === qid);
-        const btn = document.querySelectorAll('.q-nav-btn')[idx];
+        const btn = document.querySelectorAll(".q-nav-btn")[idx];
         if (btn) {
-            if (answers[qid] !== undefined && answers[qid] !== '') {
-                btn.classList.add('answered');
+            if (answers[qid] !== undefined && answers[qid] !== "") {
+                btn.classList.add("answered");
             } else {
-                btn.classList.remove('answered');
+                btn.classList.remove("answered");
             }
         }
     }
@@ -643,18 +643,18 @@
         const h = Math.floor(timeLeft / 3600);
         const m = Math.floor((timeLeft % 3600) / 60);
         const s = timeLeft % 60;
-        const timer = document.getElementById('timer');
-        timer.textContent = String(h).padStart(2, '0') + ':' + String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+        const timer = document.getElementById("timer");
+        timer.textContent = String(h).padStart(2, "0") + ":" + String(m).padStart(2, "0") + ":" + String(s).padStart(2, "0");
 
-        timer.classList.remove('warning', 'danger');
-        if (timeLeft < 300) timer.classList.add('danger');
-        else if (timeLeft < 900) timer.classList.add('warning');
+        timer.classList.remove("warning", "danger");
+        if (timeLeft < 300) timer.classList.add("danger");
+        else if (timeLeft < 900) timer.classList.add("warning");
     }
 
     // ==================== SUBMIT ====================
     function submitExam(auto = false) {
         if (examSubmitted) return;
-        if (!auto && !confirm('Yakin ingin mengumpulkan jawaban?')) return;
+        if (!auto && !confirm("Yakin ingin mengumpulkan jawaban?")) return;
 
         examSubmitted = true;
         clearInterval(timerInterval);
@@ -662,26 +662,26 @@
         let correct = 0;
         let answered = 0;
         questions.forEach(q => {
-            if (answers[q.id] !== undefined && answers[q.id] !== '') {
+            if (answers[q.id] !== undefined && answers[q.id] !== "") {
                 answered++;
-                if (q.type === 'pg') {
+                if (q.type === "pg") {
                     if (answers[q.id] === q.correct) correct++;
                 } else {
-                    const userAns = String(answers[q.id]).toLowerCase().replace(/\s/g, '');
-                    const correctAns = String(q.answer).toLowerCase().replace(/\s/g, '');
+                    const userAns = String(answers[q.id]).toLowerCase().replace(/\s/g, "");
+                    const correctAns = String(q.answer).toLowerCase().replace(/\s/g, "");
                     if (userAns === correctAns) correct++;
                 }
             }
         });
 
         const score = correct * 5;
-        document.getElementById('final-score').textContent = score;
-        document.getElementById('result-detail').innerHTML = 
-            'Benar: ' + correct + ' dari ' + questions.length + ' soal<br>' +
-            'Dijawab: ' + answered + ' soal<br>' +
-            'Pelanggaran: ' + violations + ' kali<br>' +
-            'Sisa waktu: ' + document.getElementById('timer').textContent;
-        document.getElementById('result-modal').classList.add('active');
+        document.getElementById("final-score").textContent = score;
+        document.getElementById("result-detail").innerHTML = 
+            "Benar: " + correct + " dari " + questions.length + " soal<br>" +
+            "Dijawab: " + answered + " soal<br>" +
+            "Pelanggaran: " + violations + " kali<br>" +
+            "Sisa waktu: " + document.getElementById("timer").textContent;
+        document.getElementById("result-modal").classList.add("active");
 
         const result = {
             name: userName,
@@ -694,23 +694,23 @@
             timestamp: Date.now(),
             answers: answers
         };
-        localStorage.setItem('to2_results', JSON.stringify(result));
-        console.log('Result saved:', result);
+        localStorage.setItem("to2_results", JSON.stringify(result));
+        console.log("Result saved:", result);
     }
 
     function finishExam() {
-        document.getElementById('result-modal').classList.remove('active');
-        document.getElementById('main-content').innerHTML = 
-            '<div style="text-align:center;padding:50px;">' +
-            '<h2 style="color:#27ae60;">Ujian Selesai</h2>' +
-            '<p style="color:#bdc3c7;margin-top:20px;">Terima kasih telah mengikuti Try Out 2.</p>' +
-            '<p style="color:#bdc3c7;">Hasil telah tersimpan. Silakan tutup browser.</p>' +
-            '</div>';
-        document.getElementById('main-header').style.display = 'none';
+        document.getElementById("result-modal").classList.remove("active");
+        document.getElementById("main-content").innerHTML = 
+            "<div style=\"text-align:center;padding:50px;\">" +
+            "<h2 style=\"color:#27ae60;\">Ujian Selesai</h2>" +
+            "<p style=\"color:#bdc3c7;margin-top:20px;\">Terima kasih telah mengikuti Try Out 2.</p>" +
+            "<p style=\"color:#bdc3c7;\">Hasil telah tersimpan. Silakan tutup browser.</p>" +
+            "</div>";
+        document.getElementById("main-header").style.display = "none";
     }
 
     function dismissSecurity() {
-        document.getElementById('security-overlay').classList.remove('active');
+        document.getElementById("security-overlay").classList.remove("active");
         if (violations >= MAX_VIOLATIONS) {
             submitExam(true);
         }
@@ -718,64 +718,64 @@
 
     // ==================== SECURITY ====================
     function initSecurity() {
-        document.addEventListener('contextmenu', e => {
+        document.addEventListener("contextmenu", e => {
             e.preventDefault();
-            addViolation('Klik kanan (Right Click)');
+            addViolation("Klik kanan (Right Click)");
         });
 
-        document.addEventListener('copy', e => {
+        document.addEventListener("copy", e => {
             e.preventDefault();
-            addViolation('Copy (Ctrl+C)');
+            addViolation("Copy (Ctrl+C)");
         });
-        document.addEventListener('paste', e => {
+        document.addEventListener("paste", e => {
             e.preventDefault();
-            addViolation('Paste (Ctrl+V)');
+            addViolation("Paste (Ctrl+V)");
         });
-        document.addEventListener('cut', e => {
+        document.addEventListener("cut", e => {
             e.preventDefault();
-            addViolation('Cut (Ctrl+X)');
+            addViolation("Cut (Ctrl+X)");
         });
 
-        document.addEventListener('keydown', e => {
+        document.addEventListener("keydown", e => {
             const key = e.key.toLowerCase();
             const ctrl = e.ctrlKey || e.metaKey;
 
-            if (key === 'printscreen' || key === 'snapshot') {
+            if (key === "printscreen" || key === "snapshot") {
                 e.preventDefault();
-                addViolation('PrintScreen');
-                navigator.clipboard.writeText('').catch(()=>{});
+                addViolation("PrintScreen");
+                navigator.clipboard.writeText("").catch(()=>{});
             }
 
             if (ctrl) {
-                const blocked = ['c', 'v', 'x', 'p', 's', 'a', 'u'];
+                const blocked = ["c", "v", "x", "p", "s", "a", "u"];
                 if (blocked.includes(key)) {
                     e.preventDefault();
-                    addViolation('Ctrl+' + key.toUpperCase());
+                    addViolation("Ctrl+" + key.toUpperCase());
                 }
-                if (key === 'shift' && (e.key === 'i' || e.key === 'j' || e.key === 'c')) {
+                if (key === "shift" && (e.key === "i" || e.key === "j" || e.key === "c")) {
                     e.preventDefault();
-                    addViolation('DevTools shortcut');
+                    addViolation("DevTools shortcut");
                 }
             }
 
-            if (key === 'f12') {
+            if (key === "f12") {
                 e.preventDefault();
-                addViolation('F12 (DevTools)');
+                addViolation("F12 (DevTools)");
             }
         });
 
         let blurCount = 0;
-        window.addEventListener('blur', () => {
+        window.addEventListener("blur", () => {
             blurCount++;
             if (blurCount > 1) {
-                addViolation('Pindah tab/jendela (Alt+Tab)');
+                addViolation("Pindah tab/jendela (Alt+Tab)");
             }
         });
 
-        window.addEventListener('beforeunload', e => {
+        window.addEventListener("beforeunload", e => {
             if (!examSubmitted) {
                 e.preventDefault();
-                e.returnValue = 'Ujian sedang berlangsung. Yakin ingin keluar?';
+                e.returnValue = "Ujian sedang berlangsung. Yakin ingin keluar?";
                 return e.returnValue;
             }
         });
@@ -787,29 +787,30 @@
                 } catch(e) {}
             }
         }
-        document.addEventListener('fullscreenchange', () => {
+        document.addEventListener("fullscreenchange", () => {
             if (!document.fullscreenElement && !examSubmitted) {
-                addViolation('Keluar Fullscreen');
+                addViolation("Keluar Fullscreen");
                 setTimeout(enforceFullscreen, 100);
             }
         });
         setTimeout(enforceFullscreen, 1000);
 
         setInterval(() => {
-            navigator.clipboard.writeText('').catch(()=>{});
+            navigator.clipboard.writeText("").catch(()=>{});
         }, 300);
 
+        // Anti screen recording: flash overlay (interval 8 detik, sangat halus)
         setInterval(() => {
-            const flash = document.getElementById('flash-overlay');
-            flash.style.opacity = '0.3';
-            setTimeout(() => flash.style.opacity = '0', 100);
-        }, 2000);
+            const flash = document.getElementById("flash-overlay");
+            flash.style.opacity = "0.08";
+            setTimeout(() => flash.style.opacity = "0", 80);
+        }, 8000);
 
         setInterval(() => {
             const widthThreshold = window.outerWidth - window.innerWidth > 160;
             const heightThreshold = window.outerHeight - window.innerHeight > 160;
             if (widthThreshold || heightThreshold) {
-                addViolation('DevTools terdeteksi (window size)');
+                addViolation("DevTools terdeteksi (window size)");
             }
         }, 1000);
 
@@ -818,7 +819,7 @@
             debugger;
             const end = performance.now();
             if (end - start > 100) {
-                addViolation('Debugger terdeteksi');
+                addViolation("Debugger terdeteksi");
             }
         }, 2000);
     }
@@ -826,15 +827,15 @@
     function addViolation(reason) {
         if (examSubmitted) return;
         violations++;
-        document.getElementById('violation-count').textContent = 'Pelanggaran: ' + violations + '/' + MAX_VIOLATIONS;
-        document.getElementById('violation-count').classList.add('active');
-        document.getElementById('v-count').textContent = violations;
-        document.getElementById('security-msg').textContent = 'Pelanggaran: ' + reason;
-        document.getElementById('security-overlay').classList.add('active');
+        document.getElementById("violation-count").textContent = "Pelanggaran: " + violations + "/" + MAX_VIOLATIONS;
+        document.getElementById("violation-count").classList.add("active");
+        document.getElementById("v-count").textContent = violations;
+        document.getElementById("security-msg").textContent = "Pelanggaran: " + reason;
+        document.getElementById("security-overlay").classList.add("active");
 
         if (violations >= MAX_VIOLATIONS) {
-            document.getElementById('security-btn').textContent = 'Ujian Dikunci';
-            document.getElementById('security-btn').disabled = true;
+            document.getElementById("security-btn").textContent = "Ujian Dikunci";
+            document.getElementById("security-btn").disabled = true;
         }
     }
 
