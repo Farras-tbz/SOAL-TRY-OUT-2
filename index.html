@@ -1258,7 +1258,7 @@
                 q.options.forEach(function(opt, i) {
                     const letter = String.fromCharCode(65 + i);
                     const selected = answers[index] === letter ? 'selected' : '';
-                    html += '<div class="option ' + selected + '" onclick="selectOption('' + letter + '')">' +
+                    html += '<div class="option ' + selected + '" onclick="selectOption(&#39;' + letter + '&#39;)">' +
                             '<div class="option-letter">' + letter + '</div>' +
                             '<div>' + opt + '</div>' +
                             '</div>';
